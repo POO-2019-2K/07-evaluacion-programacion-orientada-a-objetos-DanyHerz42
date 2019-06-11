@@ -1,16 +1,17 @@
+import Vista from "./vista.js";
 export default class Nota {
     constructor(nota) {
-        this._entorno = document.querySelector('#entormo');
+        this._entorno = document.querySelector('#entorno');
         this._name = nota.name;
         this._date = nota.date;
     }
 
-    crearNota() {
+    crearNota(e) {
         let div = document.createElement('div');
         div.className = 'nota';
 
         let name = document.createElement('p');
-        name.textContent = "Titulo de Muestra";
+        name.textContent = e.name;
         name.className = "tituloNota";
 
         let tachuela = document.createElement('i')
@@ -19,7 +20,7 @@ export default class Nota {
         let hr = document.createElement('hr');
 
         let fecha = document.createElement('p');
-        fecha.textContent = "dd/mm/aaaa";
+        fecha.textContent = e.date;
         fecha.className = "fechaNota";
 
         div.appendChild(name);
@@ -70,11 +71,13 @@ export default class Nota {
                     title: "Ready!",
                     confirmButtonText: "OK"
                 })
+                let vista = new Vista(document.querySelector('#entorno'));
+                vista._generarVista(aNotas);
             }
 
         }
         localStorage.setItem("notas", JSON.stringify(aNotas));
-        console.log(JSON.parse(localStorage.getItem("notas")));
+        vista._generarVista(aNotas);
         
     }
 
