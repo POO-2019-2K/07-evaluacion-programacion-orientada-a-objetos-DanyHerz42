@@ -11,7 +11,7 @@ class Main{
         })
         if (!(localStorage.getItem("notas") === null)) {
             aNotas = JSON.parse(localStorage.getItem('notas'));
-            vista._generarVista(aNotas)
+            vista._generarVista(aNotas);
         }
     }
 }
