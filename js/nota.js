@@ -120,6 +120,7 @@ export default class Nota {
             }
 
         }
+        let vista = new Vista(document.querySelector('#entorno'));
         localStorage.setItem("notas", JSON.stringify(aNotas));
         vista._generarVista(aNotas);
 
