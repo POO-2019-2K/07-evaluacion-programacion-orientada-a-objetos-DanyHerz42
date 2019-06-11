@@ -67,7 +67,8 @@ export default class Formulario {
             if (form.checkValidity() === true) {
                 let objEdit = {
                     name: inpName.value,
-                    date: inpDate.value
+                    date: inpDate.value,
+                    color: edicion.color
                 }
                 document.querySelector('body').removeChild(divBlack);
                 let n = new Nota(objEdit);

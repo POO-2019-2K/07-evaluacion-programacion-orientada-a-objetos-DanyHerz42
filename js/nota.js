@@ -3,7 +3,7 @@ import Vista from "./vista.js";
 export default class Nota {
     constructor(nota) {
         this._entorno = document.querySelector('#entorno');
-        this._name = nota.name;
+        this._name = nota.name.toUpperCase();
         this._date = nota.date;
     }
 
@@ -15,8 +15,9 @@ export default class Nota {
         name.textContent = e.name;
         name.className = "tituloNota";
 
-        let tachuela = document.createElement('i')
+        let tachuela = document.createElement('i');
         tachuela.className = "fas fa-thumbtack tachuela";
+        tachuela.style.color = e.color;
 
         let hr = document.createElement('hr');
 
@@ -57,7 +58,8 @@ export default class Nota {
         btnEdit.addEventListener('click', () => {
             let objEdit = {
                 name: e.name,
-                date: e.date
+                date: e.date,
+                color: e.color
             }
             let formulario = new Formulario("edicion");
             formulario.crearFormulario(objEdit);
@@ -79,7 +81,8 @@ export default class Nota {
         let objNota = {
             name: this._name,
             date: this._obtenerFechaString(this._date),
-            days: this._calcularDias(this._obtenerObjetoFecha(this._date))
+            days: this._calcularDias(this._obtenerObjetoFecha(this._date)),
+            color: this.colorRandom()
         }
 
         if (localStorage.getItem("notas") === null) {
@@ -170,7 +173,8 @@ export default class Nota {
         let objNota = {
             name: this._name,
             date: this._obtenerFechaString(this._date),
-            days: this._calcularDias(this._obtenerObjetoFecha(this._date))
+            days: this._calcularDias(this._obtenerObjetoFecha(this._date)),
+            color: edicion.color
         }
         console
         aNotas.forEach((e, index) => {
@@ -189,6 +193,46 @@ export default class Nota {
         let vista = new Vista(document.querySelector('#entorno'));
         vista._generarVista(aNotas);
     };
+
+    colorRandom() {
+        let random = Math.round(Math.random() * 10);
+        let color = 0;
+        switch (random) {
+            case 1:
+                color = '#F30B0B';
+                break;
+            case 2:
+                color = '#0105FE';
+                break;
+            case 3:
+                color = '#018E08';
+                break;
+            case 4:
+                color = '#FB6501';
+                break;
+            case 5:
+                color = '#F3E200';
+                break;
+            case 6:
+                color = '#FB01C9';
+                break;
+            case 7:
+                color = '#8D3030';
+                break;
+            case 8:
+                color = '#00CFFE';
+                break;
+            case 9:
+                color = '#000000';
+                break;
+            case 10:
+                color = '#761EE2';
+                break;
+            default:
+                break;
+        }
+        return color;
+    }
 
 }
 
