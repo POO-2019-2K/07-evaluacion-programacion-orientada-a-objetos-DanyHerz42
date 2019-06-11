@@ -1,9 +1,11 @@
-export default class Nota{
-    constructor(entorno){
-        this._entorno = entorno;
+export default class Nota {
+    constructor(nota) {
+        this._entorno = document.querySelector('#entormo');
+        this._name = nota.name;
+        this._date = nota.date;
     }
 
-    crearNota(){
+    crearNota() {
         let div = document.createElement('div');
         div.className = 'nota';
 
@@ -15,16 +17,89 @@ export default class Nota{
         tachuela.className = "fas fa-thumbtack tachuela";
 
         let hr = document.createElement('hr');
-        
+
         let fecha = document.createElement('p');
         fecha.textContent = "dd/mm/aaaa";
         fecha.className = "fechaNota";
 
-        
         div.appendChild(name);
         div.appendChild(tachuela);
         div.appendChild(hr);
         div.appendChild(fecha);
         this._entorno.appendChild(div);
+    }
+
+    saveOnLocalStorage() {
+        let aNotas = [];
+        let objNota = {
+            name: this._name,
+            date: this._obtenerFechaString(this._date),
+            days: this._calcularDias(this._obtenerObjetoFecha(this._date))
+        }
+
+        if (localStorage.getItem("notas") === null) {
+            aNotas.push(objNota);
+            Swal.fire({
+                type: "success",
+                text: "Added contact!",
+                title: "Ready!",
+                confirmButtonText: "OK"
+            })
+        } else {
+            aNotas = JSON.parse(localStorage.getItem("notas"));
+            let bandera = true;
+            aNotas.forEach((e, index) => {
+                console.log("hola")
+                if (e.name === objNota.name) {
+                    
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'This note is already added!',
+                        type: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                    bandera = false;
+                }
+            })
+            if (bandera === true) {
+                aNotas = JSON.parse(localStorage.getItem("notas"));
+                aNotas.push(objNota);
+                Swal.fire({
+                    type: "success",
+                    text: "Added note!",
+                    title: "Ready!",
+                    confirmButtonText: "OK"
+                })
+            }
+
+        }
+        localStorage.setItem("notas", JSON.stringify(aNotas));
+        console.log(JSON.parse(localStorage.getItem("notas")));
+        
+    }
+
+    _obtenerFechaString(fecha) {
+        let objetoFecha = this._obtenerObjetoFecha(fecha)
+        let arrayMeses = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+        let s = fecha.split("-");
+        let stringFecha = s[2] + "/" + arrayMeses[objetoFecha.getMonth()] + "/" + s[0];
+        return stringFecha;
+    }
+
+    _obtenerObjetoFecha(fecha) {
+        let s = fecha.split('-');
+        let oFecha = new Date(s[0], s[1] - 1, s[2]);
+        return oFecha;
+    }
+
+    _calcularDias(fecha) {
+        let fechaC = fecha.getTime();
+        let now = new Date().getTime();
+
+        let oneDay = 24 * 60 * 60 * 1000;
+        let differenceMs = fechaC - now;
+
+        let age = Math.trunc(differenceMs / oneDay);
+        return age;
     }
 }
