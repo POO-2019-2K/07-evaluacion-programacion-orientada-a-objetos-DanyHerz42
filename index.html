@@ -14,17 +14,28 @@
 
 <body>
   <div class="container-fluid">
-    <div class="row justify-content-between">
+    <div class="row justify-content-between ul">
       <nav class="nav col-12 p-4 header">
         <h1 class="h1 mx-4">Pending Tasks</h1>
+        <div class="toggle">
+          <label for="" class="etiq">Alphabet</label>
+          <div class="switchDiv">
+            <label class="switch" >
+              <input type="checkbox" id="checkbox">
+              <div class="slider round" id="switch"></div>
+            </label>
+          </div>
+          <label for="" class="etiq">Days left</label>
+        </div>
+
       </nav>
     </div>
-    <div class="row justify-content-center border p">
-      <div class="dashboard border col-11" id="entorno">
+    <div class="row justify-content-center p">
+      <div class="dashboard col-11" id="entorno">
 
       </div>
     </div>
-    
+
     <div class="btnAdd border" id="btnAdd">
       <i class="fas fa-plus"></i>
     </div>
@@ -39,4 +50,5 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
   integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
 </html>

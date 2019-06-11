@@ -24,6 +24,10 @@ export default class Nota {
         fecha.textContent = e.date;
         fecha.className = "fechaNota";
 
+        let numDays = document.createElement("p");
+        numDays.textContent = "Days Left: " + e.days;
+        numDays.className = "cont";
+
         let btnDelete = document.createElement('i');
         btnDelete.className = 'fas fa-trash-alt delete';
         btnDelete.addEventListener('click', () => {
@@ -63,8 +67,10 @@ export default class Nota {
         div.appendChild(tachuela);
         div.appendChild(hr);
         div.appendChild(fecha);
+       
         div.appendChild(btnDelete);
         div.appendChild(btnEdit);
+        div.appendChild(numDays);
         this._entorno.appendChild(div);
     }
 

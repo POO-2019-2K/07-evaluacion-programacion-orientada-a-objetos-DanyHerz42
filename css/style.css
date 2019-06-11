@@ -143,7 +143,6 @@ i{
 .delete{
     color: white;
     font-size: 26px;
-    margin-top: 60px;
     margin-left: 20px;
     transition: all .2s;
     cursor: pointer;
@@ -156,7 +155,6 @@ i{
 .edit{
     color: white;
     font-size: 26px;
-    margin-top: 60px;
     margin-left: 30px;
     cursor: pointer;
 }
@@ -165,3 +163,87 @@ i{
     color: rgb(11, 91, 240);
     text-shadow: 0 0 5px rgb(11, 91, 240);
 }
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+   
+  /* Ocultamos el checkbox html */
+  .switch input {
+    display:none;
+  }
+   
+  /* Formateamos la caja del interruptor sobre la cual se deslizará la perilla de control o slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(224, 6, 6);
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+   
+  /* Pintamos la perilla de control o slider usando el selector before */
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+   
+  /* Cambiamos el color de fondo cuando el checkbox esta activado */
+  input:checked + .slider {
+    background-color: rgb(11, 91, 240);
+  }
+   
+  /* Deslizamos el slider a la derecha cuando el checkbox esta activado */ 
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+   
+  /* Aplicamos efecto de bordes redondeados en slider y en el fondo del slider */
+  .slider.round {
+    border-radius: 34px;
+  }
+   
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  .toggle{
+      width: 270px;
+      display: flex;
+      margin-top: 10px;
+      margin-left: 50%;
+  }
+  .switchDiv{
+      margin: 5px 25px 5px 25px;
+  }
+
+  .etiq{
+      margin-top: 10px;
+      color: white;
+      font-weight: bold;
+  }
+
+  .dashboard{
+      margin-top: 40px;
+  }
+  .cont{
+      font-size: 20px;
+      margin-left: 190px;
+      margin-top: 20px;
+  }
